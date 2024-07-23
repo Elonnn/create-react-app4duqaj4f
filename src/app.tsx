@@ -1,12 +1,14 @@
-import '@icon-park/react/styles/index.css';
-import '@bydesign-ui/color-picker/dist/style/index.less';
-import '@okee-uikit/react/themes/platform/index.css';
-import './styles.css';
-import React, { useMemo, useState } from 'react';
+import "@bydesign-ui/color-picker/dist/style/index.less";
+import "@icon-park/react/styles/index.css";
 import {
-  TableColumnPropsNew as TableColumnProps,
   TableNew as Table,
-} from '@okee-uikit/react';
+  TableColumnPropsNew as TableColumnProps,
+  TableRowInfo,
+} from "@okee-uikit/react";
+import "@okee-uikit/react/themes/platform/index.css";
+import { useCallback, useMemo, useState } from "react";
+
+import "./styles.scss";
 
 interface DemoData {
   id: number;
@@ -24,44 +26,50 @@ function Demo(): JSX.Element {
   const columns = useMemo<TableColumnProps<DemoData>[]>(
     () => [
       {
-        id: 'id',
+        id: "id",
         width: 100,
-        title: 'ID',
-        dataProp: 'id',
+        title: "ID",
+        dataProp: "id",
       },
       {
-        id: 'name',
+        id: "name",
         width: 100,
-        title: 'Name',
-        dataProp: 'name',
+        title: "Name",
+        dataProp: "name",
       },
       {
-        id: 'book',
+        id: "book",
         width: 400,
-        title: 'Related book',
-        dataProp: 'article',
+        title: "Related book",
+        dataProp: "article",
       },
       {
-        id: 'serial',
+        id: "serial",
         width: 100,
-        title: 'Crypto',
-        dataProp: 'code',
+        title: "Crypto",
+        dataProp: "code",
       },
       {
-        id: 'years',
+        id: "years",
         width: 100,
-        title: 'Age',
-        dataProp: 'age',
+        title: "Age",
+        dataProp: "age",
       },
       {
-        id: 'gender',
+        id: "gender",
         width: 100,
-        title: 'Gender',
-        dataProp: 'gender',
+        title: "Gender",
+        dataProp: "gender",
       },
     ],
-    [],
+    []
   );
+  const rowProps = useCallback((rowInfo: TableRowInfo<DemoData>) => {
+    console.log("rowInfo", rowInfo);
+    return {
+      className: "selected-row",
+    };
+  }, []);
 
   return (
     <Table
@@ -70,6 +78,8 @@ function Demo(): JSX.Element {
       emptyType="empty"
       headerBottomBordered={false}
       bodyBottomBordered={true}
+      rowProps={rowProps}
+      className="table"
     />
   );
 }
@@ -78,89 +88,89 @@ function createData(): DemoData[] {
   return [
     {
       id: 1,
-      code: 'Alpha',
-      name: 'Alice',
+      code: "Alpha",
+      name: "Alice",
       age: 13,
-      gender: 'girl',
+      gender: "girl",
       article: "Alice and Bob: A History Of The World's Most Famous Couple",
       children: [
         {
           id: 1,
-          code: 'Athena',
-          name: 'Pallas Athena',
+          code: "Athena",
+          name: "Pallas Athena",
           age: 13,
-          gender: 'girl',
+          gender: "girl",
           article: "Alice and Bob: A History Of The World's Most Famous Couple",
         },
         {
           id: 2,
-          code: 'Venus',
-          name: 'Venus',
+          code: "Venus",
+          name: "Venus",
           age: 13,
-          gender: 'girl',
+          gender: "girl",
           article: "Alice and Bob: A History Of The World's Most Famous Couple",
         },
       ],
     },
     {
       id: 2,
-      code: 'Beta',
-      name: 'Bob',
+      code: "Beta",
+      name: "Bob",
       age: 14,
-      gender: 'boy',
+      gender: "boy",
       article: "Alice and Bob: A History Of The World's Most Famous Couple",
       children: [
         {
           id: 1,
-          code: 'RSA',
-          name: 'BoRivestb',
+          code: "RSA",
+          name: "BoRivestb",
           age: 14,
-          gender: 'boy',
+          gender: "boy",
           article:
-            'A Method of Obtaining Digital Signatures and Public-Key Cryptosystems',
+            "A Method of Obtaining Digital Signatures and Public-Key Cryptosystems",
         },
         {
           id: 2,
-          code: 'RSA',
-          name: 'Shamir',
+          code: "RSA",
+          name: "Shamir",
           age: 14,
-          gender: 'boy',
+          gender: "boy",
           article:
-            'A Method of Obtaining Digital Signatures and Public-Key Cryptosystems',
+            "A Method of Obtaining Digital Signatures and Public-Key Cryptosystems",
         },
         {
           id: 3,
-          code: 'RSA',
-          name: 'Adleman',
+          code: "RSA",
+          name: "Adleman",
           age: 14,
-          gender: 'boy',
+          gender: "boy",
           article:
-            'A Method of Obtaining Digital Signatures and Public-Key Cryptosystems',
+            "A Method of Obtaining Digital Signatures and Public-Key Cryptosystems",
         },
       ],
     },
     {
       id: 3,
-      code: 'Gamma',
-      name: 'Carol',
+      code: "Gamma",
+      name: "Carol",
       age: 15,
-      gender: 'girl',
+      gender: "girl",
       article: "Alice and Bob: A History Of The World's Most Famous Couple",
       children: [
         {
           id: 3,
-          code: 'Gamma',
-          name: 'Carol',
+          code: "Gamma",
+          name: "Carol",
           age: 15,
-          gender: 'girl',
+          gender: "girl",
           article: "Alice and Bob: A History Of The World's Most Famous Couple",
           children: [
             {
               id: 3,
-              code: 'Gamma',
-              name: 'Carol',
+              code: "Gamma",
+              name: "Carol",
               age: 15,
-              gender: 'girl',
+              gender: "girl",
               article:
                 "Alice and Bob: A History Of The World's Most Famous Couple",
             },
@@ -170,10 +180,10 @@ function createData(): DemoData[] {
     },
     {
       id: 4,
-      code: 'Delta',
-      name: 'Dave',
+      code: "Delta",
+      name: "Dave",
       age: 16,
-      gender: 'boy',
+      gender: "boy",
       article: "Alice and Bob: A History Of The World's Most Famous Couple",
     },
   ];

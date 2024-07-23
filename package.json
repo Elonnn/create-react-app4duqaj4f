@@ -10,6 +10,7 @@
     "@okee-uikit/react": "^1.1.5",
     "@okee-uikit/react-form": "^1.1.5",
     "@okee-uikit/react-locale": "^1.1.5",
+    "classnames": "^2.5.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-infinite": "^0.13.0",
@@ -19,6 +20,10 @@
   "devDependencies": {
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
+    "css-loader": "^7.1.2",
+    "sass": "^1.77.8",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
     "typescript": "4.1.3"
   },
   "scripts": {
