@@ -1,0 +1,42 @@
+{
+  "name": "Table",
+  "version": "1.0.0",
+  "description": "React and TypeScript example starter project",
+  "main": "src/index.tsx",
+  "dependencies": {
+    "@bydesign-ui/color-picker": "^2.4.3",
+    "@icon-park/react": "^1.3.3",
+    "@okee-fe/react-icons-tetris-stroke": "^0.0.72",
+    "@okee-uikit/react": "^1.1.5",
+    "@okee-uikit/react-form": "^1.1.5",
+    "@okee-uikit/react-locale": "^1.1.5",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-infinite": "^0.13.0",
+    "react-scripts": "^5.0.1",
+    "react-sortable-hoc": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.0",
+    "@types/react-dom": "17.0.0",
+    "typescript": "4.1.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
