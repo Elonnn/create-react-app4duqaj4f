@@ -1,6 +1,7 @@
 import "@bydesign-ui/color-picker/dist/style/index.less";
 import "@icon-park/react/styles/index.css";
 import {
+  Button,
   TableNew as Table,
   TableColumnPropsNew as TableColumnProps,
   TableRowInfo,
@@ -8,6 +9,9 @@ import {
 import "@okee-uikit/react/themes/platform/index.css";
 import { useCallback, useMemo, useState } from "react";
 
+import { Down, Up } from "@icon-park/react";
+
+import classNames from "classnames";
 import "./styles.scss";
 
 interface DemoData {
@@ -64,23 +68,52 @@ function Demo(): JSX.Element {
     ],
     []
   );
-  const rowProps = useCallback((rowInfo: TableRowInfo<DemoData>) => {
-    console.log("rowInfo", rowInfo);
-    return {
-      className: "selected-row",
-    };
-  }, []);
+
+  const [openedCatalogIdx, setOpenedCatalogIdx] = useState(0);
+
+  const rowProps = useCallback(
+    (rowInfo: TableRowInfo<DemoData>) => {
+      return {
+        className: classNames({
+          "selected-row": rowInfo.index === openedCatalogIdx,
+        }),
+      };
+    },
+    [openedCatalogIdx]
+  );
 
   return (
-    <Table
-      data={data}
-      columns={columns}
-      emptyType="empty"
-      headerBottomBordered={false}
-      bodyBottomBordered={true}
-      rowProps={rowProps}
-      className="table"
-    />
+    <>
+      <Table
+        data={data}
+        columns={columns}
+        renderEmpty={() => <div>No data</div>}
+        headerBottomBordered={false}
+        bodyBottomBordered={true}
+        rowProps={rowProps}
+        className="table"
+      />
+      <div className="table-footer">
+        <Button
+          disabled={openedCatalogIdx === 0}
+          onClick={() => {
+            setOpenedCatalogIdx((prevIdx) => prevIdx! - 1);
+          }}
+          className="items-center"
+        >
+          <Up theme="outline" size="24" fill={"#C3C4C5"} />
+        </Button>
+
+        <Button
+          disabled={openedCatalogIdx === data.length - 1}
+          onClick={() => {
+            setOpenedCatalogIdx((prevIdx) => prevIdx! + 1);
+          }}
+        >
+          <Down theme="outline" size="24" fill={"#C3C4C5"} />
+        </Button>
+      </div>
+    </>
   );
 }
 
@@ -93,24 +126,6 @@ function createData(): DemoData[] {
       age: 13,
       gender: "girl",
       article: "Alice and Bob: A History Of The World's Most Famous Couple",
-      children: [
-        {
-          id: 1,
-          code: "Athena",
-          name: "Pallas Athena",
-          age: 13,
-          gender: "girl",
-          article: "Alice and Bob: A History Of The World's Most Famous Couple",
-        },
-        {
-          id: 2,
-          code: "Venus",
-          name: "Venus",
-          age: 13,
-          gender: "girl",
-          article: "Alice and Bob: A History Of The World's Most Famous Couple",
-        },
-      ],
     },
     {
       id: 2,
@@ -119,35 +134,6 @@ function createData(): DemoData[] {
       age: 14,
       gender: "boy",
       article: "Alice and Bob: A History Of The World's Most Famous Couple",
-      children: [
-        {
-          id: 1,
-          code: "RSA",
-          name: "BoRivestb",
-          age: 14,
-          gender: "boy",
-          article:
-            "A Method of Obtaining Digital Signatures and Public-Key Cryptosystems",
-        },
-        {
-          id: 2,
-          code: "RSA",
-          name: "Shamir",
-          age: 14,
-          gender: "boy",
-          article:
-            "A Method of Obtaining Digital Signatures and Public-Key Cryptosystems",
-        },
-        {
-          id: 3,
-          code: "RSA",
-          name: "Adleman",
-          age: 14,
-          gender: "boy",
-          article:
-            "A Method of Obtaining Digital Signatures and Public-Key Cryptosystems",
-        },
-      ],
     },
     {
       id: 3,
@@ -156,27 +142,6 @@ function createData(): DemoData[] {
       age: 15,
       gender: "girl",
       article: "Alice and Bob: A History Of The World's Most Famous Couple",
-      children: [
-        {
-          id: 3,
-          code: "Gamma",
-          name: "Carol",
-          age: 15,
-          gender: "girl",
-          article: "Alice and Bob: A History Of The World's Most Famous Couple",
-          children: [
-            {
-              id: 3,
-              code: "Gamma",
-              name: "Carol",
-              age: 15,
-              gender: "girl",
-              article:
-                "Alice and Bob: A History Of The World's Most Famous Couple",
-            },
-          ],
-        },
-      ],
     },
     {
       id: 4,
